@@ -1,0 +1,190 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Trending.master.cs" Inherits="Trending" %>
+
+<!DOCTYPE html>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>CrowdTalk</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<form id="form1" runat="server">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="CrowdTalk.aspx">CrowdTalk</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="CrowdTalk.aspx">Home</a></li>
+								<li><a href="CrowdTalk.aspx">Popular</a></li>
+								<li><a href="CrowdTalk.aspx">HeadSpace</a></li>
+                                <li><a href="CreatePost.aspx">Create Post</a></li>
+                                <li><a href="CreateCommunity.aspx">Create Community</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+										<input type="text" name="query" placeholder="Search" />
+									</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<section>
+									<input type="text" name="query" placeholder="Search" />
+								</section>
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>My Posts</h3>
+											<p>View/Edit how My Posts looks!</p>
+										</a>
+									</li>
+									<li>
+										<a href="ManageCommunities.aspx">
+											<h3>Communities</h3>
+											<p>Manage/Moderate the communities!</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Terms and Policies.</h3>
+											<p>View the content policy and user agreement for CrowdTalk.</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>User Settings</h3>
+											<p></p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions stacked">
+									<li><a href="LoginNow.aspx" class="button large fit">Log out</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+                            
+                         <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" DataKeyField="Username">
+							<ItemTemplate>
+                             <article class="post">
+
+								<header>
+                                   
+									<div class="title">
+                                        <h2>
+                                        <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("Content_Title") %>'></asp:Label>
+                                        </h2>
+                                        <p>
+                                            <asp:Label ID="lblContent" runat="server" Text='<%# Eval("Content_Description") %>'></asp:Label>
+                                        </p>
+										<%--<h2><a href="#">First Post Demo.</a></h2>
+										<p>This is the Description regarding the first post made in the CrowdTalk.</p>--%>
+									</div>
+									<div class="meta">
+										<time class="published" datetime='<%# Eval("Posted_on") %>'>'<%# Eval("Posted_on") %>'</time>
+										<a href="#" class="author"><span class="name">
+                                            <asp:Label ID="lblUsername" runat="server" Text='<%# Eval("Username") %>'></asp:Label></span><img src='<%# Eval("Content_ImgSrc") %>' alt="" /></a>
+									</div>
+                                        
+								</header>
+								<a class="image featured"><img src='<%# Eval("Content_ImgSrc") %>' alt="" style="width: 30%;height: 30%"/></a>
+                             
+								<p>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Content_Description") %>'>
+                                        </asp:Label></p>
+								<footer>
+									<ul class="actions">
+										<li><a href="CrowdTalk.aspx" class="button large">Continue Reading</a></li>
+									</ul>
+									<ul class="stats">
+										<li><a href="#">General</a></li>
+										<li><a href="#" class="icon solid fa-heart"><%#Eval("Upvotes")%></a></li>
+										<li><a href="#" class="icon solid fa-comment">128</a></li>
+									</ul>
+								</footer>
+							</article>
+                            </ItemTemplate>
+                        </asp:DataList>
+						<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbCrowdTalkConnectionString %>" SelectCommand="SELECT * FROM [tblContent] WHERE ([Upvotes] &gt; 5)">
+                          
+                        </asp:SqlDataSource>
+						<!-- Post -->
+	</div>
+
+				<!-- Sidebar -->
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script>
+    $(document).ready(function () {
+        // Get all time elements with the "published" class
+        var timeElements = $(".published");
+
+        // Iterate over each time element
+        timeElements.each(function () {
+            var timeElement = $(this);
+
+            // Get the datetime value from the time element
+            var datetime = timeElement.attr("datetime");
+
+            // Convert the datetime string to a JavaScript Date object
+            var postedOn = new Date(datetime);
+
+            // Calculate the time difference
+            var timeSincePosted = Math.floor((Date.now() - postedOn) / 60000); // Difference in minutes
+
+            // Update the content of the time element based on the time difference
+            if (timeSincePosted < 1) {
+                timeElement.text("Just now");
+            } else if (timeSincePosted < 60) {
+                timeElement.text(timeSincePosted + " minutes ago");
+            } else if (timeSincePosted < 1440) {
+                var hours = Math.floor(timeSincePosted / 60);
+                timeElement.text(hours + " hours ago");
+            } else {
+                var days = Math.floor(timeSincePosted / 1440);
+                timeElement.text(days + " days ago");
+            }
+        });
+    });
+</script>
+
+	    </form>
+
+	</body>
+</html>

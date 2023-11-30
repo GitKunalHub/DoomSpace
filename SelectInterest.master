@@ -1,0 +1,72 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SelectInterest.master.cs" Inherits="SelectInterest" %>
+
+  <META http-equiv="Page-Enter" content="blendTrans(Duration=0.1)">
+<META http-equiv="Page-Exit" content="blendTrans(Duration=0.1)">
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Select Interests!</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+         <form runat="server">
+	<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="content">
+							<div class="inner">
+								<h1>Select your Interest!</h1>
+								<p> We want to recommend our Users the most premium and top grossing Communities. </p>
+							</div>
+						</div>
+						<nav class="content">
+							<ul>
+								<li><asp:HyperLink ID="hlSports" NavigateUrl="#Sports" runat="server">Sports</asp:HyperLink></li>
+								<li><asp:HyperLink ID="hlTechnology" NavigateUrl="#Technology" runat="server">Technology</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="hlManga" NavigateUrl="#Manga" runat="server">Manga</asp:HyperLink></li>
+								<li><asp:HyperLink ID="hlSpace" NavigateUrl="#Space" runat="server">Space</asp:HyperLink></li>
+                                   	</ul>
+                            <ul>
+								<li><asp:HyperLink ID="hlArt" NavigateUrl="#Art" runat="server">Art</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="hlAndroid" NavigateUrl="#Android" runat="server">Android</asp:HyperLink></li>
+								<li><asp:HyperLink ID="hlMusic" NavigateUrl="#Music" runat="server">Music</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="hlSciFI" NavigateUrl="#SciFi" runat="server">Sci-Fi</asp:HyperLink></li>
+                                   	</ul>
+                            <ul>
+								<li><asp:HyperLink ID="hlBeauty" NavigateUrl="#Beauty" runat="server">Beauty</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="hlCovid19" NavigateUrl="#Covid19" runat="server">Covid-19</asp:HyperLink></li>
+								<li><asp:HyperLink ID="hlGaming" NavigateUrl="#Gaming" runat="server">Gaming</asp:HyperLink></li>
+								<li><asp:HyperLink ID="hlHorror" NavigateUrl="#Horror" runat="server">Horror</asp:HyperLink></li>
+                            </ul>
+                                <ul>
+                                <li><asp:HyperLink ID="hlAnimals" NavigateUrl="#Animals" runat="server">Animals</asp:HyperLink></li>
+								<li><asp:HyperLink ID="hlBollywood" NavigateUrl="#Bollywood" runat="server">Bollywood</asp:HyperLink></li>
+								<li><asp:HyperLink ID="hlTips" NavigateUrl="#Tips" runat="server">Tips</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="hlFunny" NavigateUrl="#Funny" runat="server">Funny</asp:HyperLink></li>                      
+					           </ul>
+                                </nav>
+                        <asp:Button ID="btnSubmit" runat="server" Text="Continue" />
+                    </header>
+
+				<!-- Main -->
+                                     
+                 
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main2.js"></script>
+                 </form>
+	</body>
+</html>

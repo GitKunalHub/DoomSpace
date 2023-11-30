@@ -1,0 +1,257 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="CreateProfile.master.cs" Inherits="CreateProfile" %>
+
+ <!DOCTYPE HTML>
+<html>
+	<head>
+		<title>CrowdTalk</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <style>
+      .flex-container {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+            }
+
+            #user-profile {
+                flex-basis: 40%;
+            }
+
+            .post {
+                flex-basis: 50%;
+            }
+
+        </style>
+        <style>
+         .user-profile-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: "Arial", sans-serif; /* Replace with your desired font */
+    font-size: 18px;
+    color: #333; /* Replace with your desired color */
+}
+
+.user-profile-form input[type="text"],
+.user-profile-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: "Arial", sans-serif; /* Replace with your desired font */
+    font-size: 16px;
+    color: #555; /* Replace with your desired color */
+}
+
+.user-profile-form button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Arial", sans-serif; /* Replace with your desired font */
+    font-size: 16px;
+}
+
+/* Additional styling for aesthetics */
+.user-profile-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-family: "Arial", sans-serif; /* Replace with your desired font */
+    color: #333; /* Replace with your desired color */
+}
+
+        </style>
+        <style>
+             .post-image {
+  max-width: 500px; /* Set the maximum width */
+  max-height: 500px; /* Set the maximum height */
+  width: auto; /* Allow the image to scale down while maintaining aspect ratio */
+  height: auto; /* Allow the image to scale down while maintaining aspect ratio */
+}
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<form id="form1" runat="server">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="flex-container">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="CrowdTalk.aspx">CrowdTalk</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="CrowdTalk.aspx">Home</a></li>
+								<li><a href="Trending.aspx">Trending</a></li>
+                                <li><a href="CreatePost.aspx">Create Post</a></li>
+                                <li><a href="CreateCommunity.aspx">Create Community</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+                                    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+									</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<section>
+									<input type="text" name="query" placeholder="Search" />
+								</section>
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="MyPosts.aspx">
+											<h3>My Posts</h3>
+											<p>View how My Posts looks!</p>
+										</a>
+                                    </li>
+                                    <li>
+                                        <a href="MyPosts.aspx">
+											<h3>Edit Profile</h3>
+											<p>View/Edit how your Profile looks!</p>
+										</a>
+									</li>
+									<li>
+										<a href="ManageCommunities.aspx">
+											<h3>Communities</h3>
+											<p>Manage/Moderate the communities!</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Terms and Policies.</h3>
+											<p>View the content policy and user agreement for CrowdTalk.</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>User Settings</h3>
+											<p></p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions stacked">
+									<li><a href="Login.aspx" class="button large fit">Log out</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+					<div id="main" class="flex-container">
+
+						<!-- Post -->
+                            <section id="user-profile" class="flex-item">
+                                <h2>User Profile</h2>
+                                <div class="user-profile-form">
+                                    <asp:Label ID="lblUsername" runat="server" Text="Username"></asp:Label>
+                                    <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox><br />
+
+                                    <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
+                                    <asp:DropDownList ID="ddlGender" runat="server">
+                                        <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
+                                        <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                                    </asp:DropDownList><br />
+
+                                    <asp:Label ID="lblMobileNo" runat="server" Text="Mobile No"></asp:Label>
+                                    <asp:TextBox ID="txtMobileNo" runat="server"></asp:TextBox><br />
+             <asp:Button ID="btnSaveProfile" runat="server" Text="Save Profile" OnClick="btnSaveProfile_Click"/>
+                                </div>
+                            </section>
+                        
+						<!-- Post -->
+							<article  class="post flex-item" >
+								<header>
+									<div class="title">
+										<h2><a href="CrowdTalk.aspx">Welcome to CrowdTalk</a></h2>
+										<p>For the wholesome users like you!</p>
+									</div>
+								</header>
+								<a href="#" class="image featured"><img src="C:\Users\kunal\Downloads\Compressed\CrowdTalk\images\CrowdTalk-high-resolution-color-logo.png" alt="" /></a>
+								<p>CrowdTalk was started with the intention of providing the users one of the most fluent UI based social network which lets them visit again with love.</p>
+								<footer>
+									<ul class="actions">
+										<li><a href="aboutCrowdTalk.aspx" class="button large">Continue Reading</a></li>
+									</ul>
+								</footer>
+							</article>
+	</div>
+
+				<!-- Sidebar -->
+					
+
+						<!-- About -->
+						
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script>
+    $(document).ready(function () {
+        // Get all time elements with the "published" class
+        var timeElements = $(".published");
+
+        // Iterate over each time element
+        timeElements.each(function () {
+            var timeElement = $(this);
+
+            // Get the datetime value from the time element
+            var datetime = timeElement.attr("datetime");
+
+            // Convert the datetime string to a JavaScript Date object
+            var postedOn = new Date(datetime);
+
+            // Calculate the time difference
+            var timeSincePosted = Math.floor((Date.now() - postedOn) / 60000); // Difference in minutes
+
+            // Update the content of the time element based on the time difference
+            if (timeSincePosted < 1) {
+                timeElement.text("Just now");
+            } else if (timeSincePosted < 60) {
+                timeElement.text(timeSincePosted + " minutes ago");
+            } else if (timeSincePosted < 1440) {
+                var hours = Math.floor(timeSincePosted / 60);
+                timeElement.text(hours + " hours ago");
+            } else {
+                var days = Math.floor(timeSincePosted / 1440);
+                timeElement.text(days + " days ago");
+            }
+        });
+    });
+</script>
+
+	    </form>
+
+	</body>
+</html>

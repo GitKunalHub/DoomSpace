@@ -1,0 +1,72 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SignUp.master.cs" Inherits="Login" %>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="LoginPage/assets/css/main.css" />
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<h1>CrowdTalk</h1>
+				<p>Not just another Social Media Platform.</p>
+                <p>Login to the Platform!</p>
+			</header>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+		<!-- Signup Form -->
+			<form id="signupform" runat="server" method="post" action="#">
+				<%--<input type="email" name="email" id="email" placeholder="Email Address" />--%>
+                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email Address.." Width="25%"></asp:TextBox>
+                <br>
+                <%--<input type="password" name="password" id="password" placeholder="Password" />--%>
+                <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" placeholder="Password" Width="25%"></asp:TextBox>
+                <br>
+ 
+                <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click1" />
+                             <!-- Google Sign-In button -->
+                <br />
+             </form>
+            Already have an Account? <a href="LoginNow.aspx">Login here!</a>
+        </asp:ContentPlaceHolder>
+		<!-- Footer -->
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled.</li><li>Credits: <a href="Login.aspx">By Group 50.!!</a></li>
+				</ul>
+			</footer>
+		<!-- Scripts -->
+			<script src="LoginPage/assets/js/main.js"></script>
+            <script>
+                function handleGoogleSignIn(googleUser) {
+                    // Get the user's Google ID token
+                    var idToken = googleUser.getAuthResponse().id_token;
+
+                    // Include the ID token in a hidden field of the form
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", "googleIdToken");
+                    hiddenField.setAttribute("value", idToken);
+                    document.getElementById("signupform").appendChild(hiddenField);
+
+                    // Submit the form
+                    document.getElementById("signupform").submit();
+                }
+            </script>
+	</body>
+</html>

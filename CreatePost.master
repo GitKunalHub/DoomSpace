@@ -1,0 +1,216 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="CreatePost.master.cs" Inherits="CreatePost" %>
+
+ <!DOCTYPE HTML>
+<html>
+	<head>
+		<title>CrowdTalk</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <style>
+           @keyframes pulse-animation {
+              0% {
+                transform: scale(1);
+              }
+              50% {
+                transform: scale(1.2);
+              }
+              100% {
+                transform: scale(1);
+              }
+            }
+
+            .file-upload.animated {
+              animation-name: pulse-animation;
+              animation-duration: 1s;
+              animation-iteration-count: infinite;
+            }
+
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="CrowdTalk.aspx">CrowdTalk</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="CrowdTalk.aspx">Home</a></li>
+								<li><a href="CrowdTalk.aspx">Popular</a></li>
+								<li><a href="#">HeadSpace</a></li>
+                                <li><a href="CreatePost.aspx">Create Post</a></li>
+                                <li><a href="CreateCommunity.aspx">Create Community</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section>
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>My Posts</h3>
+											<p>View/Edit how My Posts looks!</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Communities</h3>
+											<p>Manage/Moderate the communities!</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Terms and Policies.</h3>
+											<p>View the content policy and user agreement for CrowdTalk.</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>User Settings</h3>
+											<p></p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions stacked">
+									<li><a href="#" class="button large fit">Log out</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+                         <form id="form1" runat="server">
+         
+                 <table style="width: 69%; height: 45px;" border="1">
+        <tr>
+            <td align="center" style="height: 43px; width: 245px">
+                <asp:Button ID="btnPost" runat="server" Height="43px" Width="245px" ForeColor="#a9a9a9" Text="Post" BorderColor="#333333" BorderStyle="None" BackColor="transparent" /></td>
+  
+        </tr>
+    </table>    
+
+        <asp:Panel ID="pnlTitle" runat="server">
+            <asp:TextBox ID="txtTitle" runat="server" placeholder="Title"></asp:TextBox>
+        </asp:Panel>
+        
+                     <asp:Panel ID="pnlHome" runat="server">
+                         
+                        <div class="tweet-textbox-container">
+                            <asp:TextBox ID="txtContent" runat="server" placeholder="Content Text (optional)..." TextMode="Multiline" Width="69%" CssClass="tweet-textbox" MaxLength="255"></asp:TextBox>
+                            <span class="char-count">255</span> characters remaining
+                        </div>
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script>
+                            $(document).ready(function () {
+                                var maxChars = 255;
+
+                                // Attach an event handler to the textbox's input event
+                                $('#<%= txtContent.ClientID %>').on('input', function () {
+                              var currentChars = $(this).val().length;
+                              var remainingChars = maxChars - currentChars;
+
+                              // Update the textbox's value with the remaining characters count
+                              $(this).next('.char-count').text(remainingChars);
+
+                              // Truncate the text if it exceeds the maximum character limit
+                              if (currentChars > maxChars) {
+                                  $(this).val($(this).val().substring(0, maxChars));
+                              }
+                          });
+                        });
+                        </script>
+
+                          <br />
+                    <br />
+                     <asp:FileUpload ID="FileUpload2" CssClass="file-upload" runat="server" />
+                    <br />
+                         <br />
+                     <asp:Button ID="btnSubmit" runat="server" Text="Post" OnClick="btnSubmit_Click" />
+                     </asp:Panel>
+    </form>
+
+      <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+	</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a href="#" class="logo"><img src="C:\Users\kunal\Downloads\Compressed\html5up-future-imperfect\images\CrowdTalk-high-resolution-logo-black-on-transparent-background.png" alt="" /></a>
+								<header>
+									<h2>CrowdTalk</h2>
+									<p>Not "just another Social Network"!</p>
+								</header>
+							</section>
+
+						<!-- Mini Posts -->
+						<!-- Footer -->
+							<section id="footer">
+								<ul class="icons">
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+									<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+								<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+							</section>
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script>
+                        window.onload = function () {
+                        var fileUpload = document.getElementById('<%= FileUpload2.ClientID %>');
+                  fileUpload.addEventListener('change', function () {
+                      fileUpload.classList.add('animated');
+                      setTimeout(function () {
+                          fileUpload.classList.remove('animated');
+                      }, 1000); // Adjust the duration of the animation here (in milliseconds)
+                  });
+              };
+            </script>
+
+	</body>
+</html>
